@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #60BFC1;
+      border-radius: 5px;
+      background-color: #BADFD7;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      width: 100%;
+      background-color: #5CB4C2;
+      color: white;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #5CB4C2;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    details[open]>summary {
+      background-color: #B4D8E8;
+    }
+
+  </style>
+</head>
+<body>
+  <form id="ageCalculatorForm" role="form" aria-labelledby="ageCalculationLabel">
+    <h1 id="ageCalculationLabel">Age Calculator</h1>
+    <label for="dobDay">Enter your date of birth:</label>
+    <input type="number" id="dobDay" placeholder="Day (1-31)" min="1" max="31" required aria-describedby="dobDayDesc">
+    <input type="number" id="dobMonth" placeholder="Month (1-12)" min="1" max="12" required aria-describedby="dobMonthDesc">
+    <input type="number" id="dobYear" placeholder="Year (e.g., 1990)" min="1900" max="2100" required aria-describedby="dobYearDesc">
+    <input type="submit" value="Calculate Age" aria-label="Calculate Age">
+    <div id="result"></div>
+    <br><br>
+
+    <p align="right">MK_2024&copy;</p>
+
+  </form><br><br>
+
+  
+  <script>
+    document.getElementById('ageCalculatorForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var dobDay = parseInt(document.getElementById('dobDay').value);
+      var dobMonth = parseInt(document.getElementById('dobMonth').value);
+      var dobYear = parseInt(document.getElementById('dobYear').value);
+
+      var currentDate = new Date();
+      var currentYear = currentDate.getFullYear();
+      var currentMonth = currentDate.getMonth() + 1;
+      var currentDay = currentDate.getDate();
+
+      var age = currentYear - dobYear;
+
+      if (currentMonth < dobMonth || (currentMonth === dobMonth && currentDay < dobDay)) {
+        age--;
+     }
+
+      document.getElementById('result').innerText = "Your age is: " + age;
+    });
+  </script>
+  <details>
+    <summary>Summary here</summary>
+    <ul>
+      <li>This Age Calculator HTML webpage provides a user-friendly interface for users to input their date of birth (day, month, and year) and calculates their age accordingly. The form ensures that users enter valid values for day, month, and year within specified ranges. If the user's birthday for the current year has not yet occurred, the age calculation adjusts accordingly. The result is displayed below the form, providing users with a clear indication of their calculated age.</li>
+      <li>The webpage is designed with accessibility in mind, utilizing proper labels, semantic HTML elements, and keyboard accessibility features to ensure usability for all users.</li>
+    </ul>
+  </details>
+
+</body>
+</html>
